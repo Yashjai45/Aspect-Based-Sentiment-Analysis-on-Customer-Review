@@ -1,0 +1,18 @@
+import spacy
+
+# Load the spaCy language model
+nlp = spacy.load('en_core_web_sm')
+
+# Define aspect keywords (manual for this example)
+aspects = ['food', 'service', 'ambiance', 'pricing', 'cleanliness']
+
+# Function to extract aspects from text
+def extract_aspects(text):
+    doc = nlp(text)
+    found_aspects = [aspect for aspect in aspects if aspect in text.lower()]
+    return found_aspects
+
+# Apply aspect extraction to the review data
+merged_data['aspects'] = merged_data['text'].apply(extract_aspects)
+
+print(merged_data[['text', 'aspects']].head())
