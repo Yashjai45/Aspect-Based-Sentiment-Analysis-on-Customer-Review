@@ -1,0 +1,25 @@
+import pandas as pd
+import json
+
+# Load the datasets
+with open('review.json', 'r') as f:
+    review_data = pd.DataFrame([json.loads(line) for line in f])
+
+with open('business.json', 'r') as f:
+    business_data = pd.DataFrame([json.loads(line) for line in f])
+
+# Check the structure
+print("Review Data Sample:")
+print(review_data.head())
+
+print("Business Data Sample:")
+print(business_data.head())
+
+# Merge review and business data for sentiment analysis
+merged_data = pd.merge(review_data, business_data, on='business_id', how='left')
+
+# Optional: Drop columns that won't be used
+merged_data = merged_data[['review_id', 'user_id', 'business_id', 'stars', 'text', 'name', 'categories']]
+
+# Handle missing values (e.g., using fillna)
+merged_data = merged_data.fillna('')
