@@ -1,0 +1,5 @@
+insights = merged_data.groupby('aspects')['sentiment'].value_counts().unstack().fillna(0)
+insights.to_csv('insights_report.csv')
+
+# Example of insights summary
+print(insights)
