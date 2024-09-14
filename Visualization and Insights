@@ -1,0 +1,12 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Sentiment distribution
+sns.countplot(x='sentiment', data=merged_data)
+plt.title("Sentiment Distribution")
+plt.show()
+
+# Anomalies distribution
+sns.countplot(x='anomaly', data=checkin_data)
+plt.title("Anomaly Distribution")
+plt.show()
