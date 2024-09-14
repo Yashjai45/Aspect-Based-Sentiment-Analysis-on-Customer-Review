@@ -1,0 +1,20 @@
+from sklearn.ensemble import IsolationForest
+
+# Process check-in data for time series analysis
+# For simplicity, assume checkin_data has 'checkin_time' which will be processed for anomaly detection
+
+# Feature engineering (e.g., extracting timestamps)
+# For this example, we'll use random features for demonstration
+checkin_data['timestamp'] = pd.to_datetime(checkin_data['checkin_time'])
+
+# Prepare the features
+checkin_data['day'] = checkin_data['timestamp'].dt.day
+checkin_data['hour'] = checkin_data['timestamp'].dt.hour
+features = checkin_data[['day', 'hour']]
+
+# Apply Isolation Forest
+clf = IsolationForest(random_state=0)
+checkin_data['anomaly'] = clf.fit_predict(features)
+
+# Display results
+print(checkin_data[['business_id', 'anomaly']].head())
