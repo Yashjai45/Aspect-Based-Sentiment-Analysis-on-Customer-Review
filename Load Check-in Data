@@ -1,0 +1,4 @@
+with open('checkin.json', 'r') as f:
+    checkin_data = pd.DataFrame([json.loads(line) for line in f])
+
+print(checkin_data.head())
